@@ -58,8 +58,7 @@ hudi_options = {
     "hoodie.datasource.write.recordkey.field": "emp_id",
     "hoodie.datasource.table.name": table_name,
     "hoodie.datasource.write.operation": "upsert",
-    "hoodie.datasource.write.precombine.field": "ts"
-
+    "hoodie.datasource.write.precombine.field": "ts",
     "hoodie.datasource.hive_sync.enabled": "true",
     "hoodie.datasource.hive_sync.mode": "hms",
     "hoodie.datasource.hive_sync.sync_as_datasource": "false",
