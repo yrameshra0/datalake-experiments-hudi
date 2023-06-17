@@ -6,16 +6,17 @@ try:
     import pyspark
     from pyspark import SparkConf, SparkContext
     from pyspark.sql import SparkSession
-    from pyspark.utils import col, asc, desc
-    from awsglue.util import getResolvedOptions
+    from pyspark.sql.functions import col, asc, desc
+    from awsglue.utils import getResolvedOptions
+    from awsglue.dynamicframe import DynamicFrame
     from awsglue.context import GlueContext
     from faker import Faker
 
     print("ALL Modules are Loaded Successfully")
-excep Exception as e:
+except Exception as e:
     print("Some Modules are missing {}".format(e))
 
-base_s3_path = "s3a://glue-learn-bigneers-n00b"
+base_s3_path = "s3a://glue-learn-begineers-n00b"
 database_name = "hudi_experiments"
 table_name = "users"
 
@@ -56,7 +57,8 @@ hudi_options = {
     "hoodie.datasource.write.storage.type": "COPY_ON_WRITE",
     "hoodie.datasource.write.recordkey.field": "emp_id",
     "hoodie.datasource.table.name": table_name,
-    "hoodie.datasource.operation": "upsert",
+    "hoodie.datasource.write.operation": "upsert",
+    "hoodie.datasource.write.precombine.field": "ts"
 
     "hoodie.datasource.hive_sync.enabled": "true",
     "hoodie.datasource.hive_sync.mode": "hms",
@@ -97,6 +99,7 @@ impleDataUpd = [
     (3, "this is update on data lake"m "Sales", "RJ", 81000, 20, 23000, 827307999),
 ]
 columns=["emp_id", "employee_name", "department", "state", "salary", "age", "bonus", "ts"]
-usr_up_df=spark.createDataFrame
+usr_up_df=spark.createDataFrame(data=impleDataUpdm schema=columns)
+usr_up_df.write.format("hudi").options(**hudi_options).mode("append").save(final_base_path)
 
 
