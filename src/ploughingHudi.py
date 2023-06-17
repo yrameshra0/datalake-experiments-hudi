@@ -41,12 +41,12 @@ class DataGenerator(object):
             ) for x in range(10)
         ]
 
-    def create_spark_session():
-        spark = SparkSession \
+def create_spark_session():
+    spark = SparkSession \
             .builder \
             .config('spark.serializer', 'org.apache.spark.serializer.KryoSerializer') \
             .getOrCreate()
-        return spark
+    return spark
 
 spark = create_spark_session()
 sc = spark.sparkContext
