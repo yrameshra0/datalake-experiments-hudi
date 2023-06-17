@@ -95,7 +95,7 @@ usr_up_df.write.format('hudi').options(**hudi_options).mode("append").save(final
 #=================================================
 
 impleDataUpd = [
-    (3, "this is update on data lake"m "Sales", "RJ", 81000, 20, 23000, 827307999),
+    (3, "this is update on data lake", "Sales", "RJ", 81000, 20, 23000, 827307999),
 ]
 columns=["emp_id", "employee_name", "department", "state", "salary", "age", "bonus", "ts"]
 usr_up_df=spark.createDataFrame(data=impleDataUpdm schema=columns)
