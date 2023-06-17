@@ -101,5 +101,3 @@ impleDataUpd = [
 columns=["emp_id", "employee_name", "department", "state", "salary", "age", "bonus", "ts"]
 usr_up_df=spark.createDataFrame(data=impleDataUpdm schema=columns)
 usr_up_df.write.format("hudi").options(**hudi_options).mode("append").save(final_base_path)
-
-
