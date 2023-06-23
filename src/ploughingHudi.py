@@ -54,7 +54,7 @@ glueContext = GlueContext(sc)
 
 hudi_options = {
     'hoodie.table.name': table_name,
-    "hoodie.datasource.write.storage.type": "COPY_ON_WRITE",
+    "hoodie.datasource.write.storage.type": "MERGE_ON_READ",
     'hoodie.datasource.write.recordkey.field': 'emp_id',
     'hoodie.datasource.write.table.name': table_name,
     'hoodie.datasource.write.operation': 'upsert',
